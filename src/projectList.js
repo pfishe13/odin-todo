@@ -23,7 +23,7 @@ const ProjectList = (() => {
         }
     }
 
-    return { addProject, removeProject, outputProjects }
+    return { projects, addProject, removeProject, outputProjects }
 })();
 
 export { ProjectList };
