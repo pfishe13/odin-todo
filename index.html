@@ -12,5 +12,24 @@
     <div id="header"></div>
     <div id="sidebar"></div>
     <div id="main-content"></div>
+    <div id="project-form">
+        <form id="new-project" onsubmit="">
+            <h2>Create a New Project</h2>
+            <label for="project-name">Project Name:</label>
+            <input id="project-name" type="text" required>
+
+            <label for="project-color">Display Color</label>
+            <input id="project-color" type="color">
+
+            <div class="form-buttons">
+                <button type="button" class="cancel"><span class="material-symbols-outlined">
+                  close
+                  </span></button>
+                <button id="project-submit" type="submit"><span class="material-symbols-outlined">
+                  done
+                  </span></button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
