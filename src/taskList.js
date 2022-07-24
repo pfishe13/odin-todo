@@ -25,7 +25,7 @@ const TaskList = (() => {
         }
     }
 
-    return { addTask, removeTask, outputTasks }
+    return { addTask, removeTask, outputTasks, tasks }
 })();
 
 export { TaskList };

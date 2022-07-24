@@ -29,3 +29,16 @@ body {
 #main-content {
   background-color: beige;
 }
+
+#project-form {
+  padding: 20px;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  transform: translate(calc(50vw - 50%), calc(50vh - 50%));
+  background-color: transparent;
+  border: 6px solid white;
+  border-radius: 20px;
+  z-index: 5;
+}

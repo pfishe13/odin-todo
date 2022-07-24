@@ -1,8 +1,12 @@
+import { Project } from "./project";
+
 const ProjectList = (() => {
     let projects = [];
 
     const addProject = (project) => {
+        console.log(`Adding new project: ${project.getProjectName()}`);
         projects.push(project);
+
     }
 
     const removeProject = (project) => {
