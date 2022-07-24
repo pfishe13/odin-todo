@@ -3,38 +3,33 @@ import { Project } from "./project";
 
 const Sidebar = (() => {
     const displaySidebar = () => {
-        clearSidebar();
         displayProjectButtons();
     }
 
-    const clearSidebar = () => {
-        const sidebar = document.getElementById("sidebar");
-        while(sidebar.firstChild) {
-            sidebar.removeChild(sidebar.firstChild);
-        }
-    }
-
     const displayProjectButtons = () => {
-        const sidebar = document.getElementById("sidebar");
+        const sidebar = document.getElementById("project-buttons");
         const projectButton = document.createElement('button');
             projectButton.textContent = `All Tasks`;
             sidebar.appendChild(projectButton);
         for (const project of ProjectList.projects) {
-            const projectButton = document.createElement('button');
-            projectButton.textContent = `${project.getProjectName()}`;
-            projectButton.style.color = `${project.getProjectColor()}`
-            // projectButton.addEventListener('click', displayTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
-            sidebar.appendChild(projectButton);
+            createProjectButton(project);
         }
         newProjectButton();
     }
 
+    const createProjectButton = (project) => {
+        const sidebar = document.getElementById("project-buttons");
+        const projectButton = document.createElement('button');
+        projectButton.textContent = `${project.getProjectName()}`;
+        projectButton.style.color = `${project.getProjectColor()}`
+            // projectButton.addEventListener('click', displayTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
+        sidebar.appendChild(projectButton);
+    }
+
     const newProjectButton = () => {
-        const sidebar = document.getElementById("sidebar");
-        const newProjectButton = document.createElement('button');
-        newProjectButton.textContent = `Create Project`;
+        const newProjectButton = document.getElementById("open-project-form")
         newProjectButton.addEventListener('click', openProjectForm)
-        sidebar.appendChild(newProjectButton);
+        // sidebar.appendChild(newProjectButton);
     }
 
     const openProjectForm = () => {
@@ -64,8 +59,7 @@ const Sidebar = (() => {
         ProjectList.addProject(newProject);
 
         closeProjectForm();
-        clearSidebar();
-        displayProjectButtons();
+        createProjectButton(newProject);
     }
 
     return { displaySidebar };

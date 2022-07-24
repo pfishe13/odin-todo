@@ -20,7 +20,7 @@ const TaskList = (() => {
         }
         console.log("Tasks: ")
         for (const task of tasks) {
-            console.log(`${i}) ${task.getTitle()}, ${task.getDescription()}`)
+            console.log(`${i}) ${task.getTitle()}, ${task.getDescription()}, ${task.getDueDate()}, ${task.getProject().getProjectName()}`)
             i++;
         }
     }

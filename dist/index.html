@@ -9,8 +9,22 @@
 </head>
 <body>
     <script src="main.js" defer></script>
-    <div id="header"></div>
-    <div id="sidebar"></div>
+    <div id="header">
+        <h1>Todo.</h1>
+        <button id="open-task-form">
+            <span class="material-symbols-outlined">
+            add
+            </span>
+        </button>
+    </div>
+    <div id="sidebar">
+        <div id="project-buttons"></div>
+        <button id="open-project-form">
+            <span class="material-symbols-outlined">
+            add
+            </span>
+        </button>
+    </div>
     <div id="main-content"></div>
     <div id="project-form">
         <form id="new-project" onsubmit="">
@@ -26,6 +40,29 @@
                   close
                   </span></button>
                 <button id="project-submit" type="submit"><span class="material-symbols-outlined">
+                  done
+                  </span></button>
+            </div>
+        </form>
+    </div>
+    <div id="task-form">
+        <form id="new-task" onsubmit="">
+            <div class="form-inputs">
+                <h2>Create a New Task</h2>
+                <label for="task-name">Task Name:</label>
+                <input id="task-name" type="text" required>
+
+                <label for="task-description">Description:</label>
+                <input id="task-description" type="text" >
+
+                <label for="task-date">Due:</label>
+                <input id="task-date" type="date" >
+            </div>
+            <div class="form-buttons">
+                <button type="button" class="task-cancel"><span class="material-symbols-outlined">
+                  close
+                  </span></button>
+                <button id="task-submit" type="submit"><span class="material-symbols-outlined">
                   done
                   </span></button>
             </div>
