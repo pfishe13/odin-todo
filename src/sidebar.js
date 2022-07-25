@@ -9,8 +9,11 @@ const Sidebar = (() => {
 
     const displayProjectButtons = () => {
         const sidebar = document.getElementById("project-buttons");
-        const projectButton = document.createElement('button');
-            projectButton.textContent = `All Tasks`;
+        const projectButton = document.createElement('h3');
+            projectButton.innerHTML = `<span class="project-icon material-symbols-outlined">
+            folder
+            </span>All Tasks`;
+            // projectButton.textContent = `All Tasks`;
             projectButton.id = 'all';
             projectButton.addEventListener('click', MainContent.displayProjectTasks);
             sidebar.appendChild(projectButton);
@@ -22,8 +25,10 @@ const Sidebar = (() => {
 
     const createProjectButton = (project) => {
         const sidebar = document.getElementById("project-buttons");
-        const projectButton = document.createElement('button');
-        projectButton.textContent = `${project.getProjectName()}`;
+        const projectButton = document.createElement('h3');
+        projectButton.innerHTML = `<span class="project-icon material-symbols-outlined">
+            folder
+            </span>${project.getProjectName()}`;
         projectButton.style.color = `${project.getProjectColor()}`;
         projectButton.id = `${project.getProjectName().replace(/\s+/g, '-')}`;
         projectButton.addEventListener('click', MainContent.displayProjectTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
