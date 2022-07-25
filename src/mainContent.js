@@ -5,7 +5,8 @@ import { Task } from "./tasks";
 
 const MainContent = (() => {
     const loadInitialTasks = () => {    
-        for (const task of TaskList.tasks) {
+        const taskArray = TaskList.getTasks();
+        for (const task of taskArray) {
             displayTask(task);
         }
         newTaskButton();
@@ -13,12 +14,13 @@ const MainContent = (() => {
 
     const displayProjectTasks = (e) => {
         clearMainContent();
+        const taskArray = TaskList.getTasks();
         if (e.target.id === 'all') {
             loadInitialTasks();
             return;
         }
         const projectName = e.target.id.replace('-', /\s+/g);
-        const projectTasks = TaskList.tasks.filter( (task) => {
+        const projectTasks = taskArray.filter( (task) => {
             return (task.getProject().getProjectName().toString() === projectName);
         });
         for (const task of projectTasks) {
@@ -34,19 +36,44 @@ const MainContent = (() => {
     }
 
     const displayTask = (task) => {
+        const idFlag = task.getTitle().replace(/\s+/g, '-');
+        // console.log(idFlag);
         const mainContainer = document.getElementById("main-content");
         const taskCard = document.createElement("div");
             taskCard.classList.add("task-card");
             taskCard.innerHTML = `
                 <div class="card-left-side">
-                    <h2>${task.getTitle()}</h2>
-                    <h3>${task.getDescription()}</h3>
+                    <div>
+                        <h2>${task.getTitle()}</h2>
+                        <h3>${task.getDescription()}</h3>
+                    </div>
+                    
+                </div>
                 <div class="card-right-side">
-                    <h3>${task.getDueDate()}</h3>
-                    <h3>${task.getProject().getProjectName()}</h3>
+                    <h3>Project: ${task.getProject().getProjectName()} | Due: ${task.getDueDate()}</h3>
+                    <div>
+                        <span id="${idFlag}-complete" class="complete-task material-symbols-outlined">
+                            done
+                        </span>
+                        <span id="${idFlag}-edit" class="edit-task material-symbols-outlined">
+                            edit_note
+                        </span>
+                        <span id="${idFlag}-delete" class="delete-task material-symbols-outlined">
+                            delete
+                        </span>
+                    </div>
                 </div>
             `;
             mainContainer.appendChild(taskCard);
+
+            const completeButton = document.getElementById(`${idFlag}-complete`);
+            completeButton.addEventListener('click', completeTask);
+
+            const editButton = document.getElementById(`${idFlag}-edit`);
+            editButton.addEventListener('click', editTask);
+
+            const deleteButton = document.getElementById(`${idFlag}-delete`);
+            deleteButton.addEventListener('click', deleteTask);
     }
 
     const newTaskButton = () => {
@@ -102,7 +129,24 @@ const MainContent = (() => {
 
         displayTask(newTask);
         closeTaskForm();
-        TaskList.outputTasks();
+        // TaskList.outputTasks();
+    }
+
+    const deleteTask = (e) => {
+        clearMainContent();
+        const taskName = (e.target.id).split("-");
+        taskName.pop();
+        const taskNameString = taskName.join(" ");
+        TaskList.removeTask(taskNameString);
+        loadInitialTasks();
+    }
+
+    const editTask = (e) => {
+        console.log(e.target.id);
+    }
+
+    const completeTask = (e) => {
+        console.log(e.target.id);
     }
 
     return { loadInitialTasks, displayProjectTasks };

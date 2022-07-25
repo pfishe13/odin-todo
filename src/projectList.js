@@ -4,7 +4,7 @@ const ProjectList = (() => {
     let projects = [];
 
     const addProject = (project) => {
-        console.log(`Adding new project: ${project.getProjectName()}`);
+        // console.log(`Adding new project: ${project.getProjectName()}`);
         projects.push(project);
 
     }
