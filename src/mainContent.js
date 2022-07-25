@@ -11,6 +11,28 @@ const MainContent = (() => {
         newTaskButton();
     }
 
+    const displayProjectTasks = (e) => {
+        clearMainContent();
+        if (e.target.id === 'all') {
+            loadInitialTasks();
+            return;
+        }
+        const projectName = e.target.id.replace('-', /\s+/g);
+        const projectTasks = TaskList.tasks.filter( (task) => {
+            return (task.getProject().getProjectName().toString() === projectName);
+        });
+        for (const task of projectTasks) {
+            displayTask(task);
+        }
+    }
+
+    const clearMainContent = () => {
+        const mainContainer = document.getElementById("main-content");
+        while (mainContainer.lastChild) {
+            mainContainer.lastChild.remove();
+        }
+    }
+
     const displayTask = (task) => {
         const mainContainer = document.getElementById("main-content");
         const taskCard = document.createElement("div");
@@ -83,7 +105,7 @@ const MainContent = (() => {
         TaskList.outputTasks();
     }
 
-    return { loadInitialTasks };
+    return { loadInitialTasks, displayProjectTasks };
 })();
 
 

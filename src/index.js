@@ -19,13 +19,13 @@ ProjectList.outputProjects();
 
 const newTask = Task("Parker", "Fisher", "IDK", School, true);
 const newTask2 = Task("Anthony", "Bishop", "IDK", School, true);
+const newTask3 = Task("Mike", "Burrington", "Date", Work, true);
 
 
 TaskList.addTask(newTask);
-TaskList.outputTasks();
-
 TaskList.addTask(newTask2);
-TaskList.outputTasks();
+TaskList.addTask(newTask3);
+
 
 Sidebar.displaySidebar();
 MainContent.loadInitialTasks();

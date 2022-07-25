@@ -1,5 +1,6 @@
 import { ProjectList } from "./projectList"
 import { Project } from "./project";
+import { MainContent } from "./mainContent";
 
 const Sidebar = (() => {
     const displaySidebar = () => {
@@ -10,6 +11,8 @@ const Sidebar = (() => {
         const sidebar = document.getElementById("project-buttons");
         const projectButton = document.createElement('button');
             projectButton.textContent = `All Tasks`;
+            projectButton.id = 'all';
+            projectButton.addEventListener('click', MainContent.displayProjectTasks);
             sidebar.appendChild(projectButton);
         for (const project of ProjectList.projects) {
             createProjectButton(project);
@@ -21,8 +24,9 @@ const Sidebar = (() => {
         const sidebar = document.getElementById("project-buttons");
         const projectButton = document.createElement('button');
         projectButton.textContent = `${project.getProjectName()}`;
-        projectButton.style.color = `${project.getProjectColor()}`
-            // projectButton.addEventListener('click', displayTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
+        projectButton.style.color = `${project.getProjectColor()}`;
+        projectButton.id = `${project.getProjectName().replace(/\s+/g, '-')}`;
+        projectButton.addEventListener('click', MainContent.displayProjectTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
         sidebar.appendChild(projectButton);
     }
 
