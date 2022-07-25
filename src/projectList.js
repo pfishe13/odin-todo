@@ -3,8 +3,12 @@ import { Project } from "./project";
 const ProjectList = (() => {
     let projects = [];
 
+    const getProjects = () => {
+        return projects;
+    }
+
     const addProject = (project) => {
-        // console.log(`Adding new project: ${project.getProjectName()}`);
+        console.log(`Adding new project: ${project.getProjectName()}`);
         projects.push(project);
 
     }
@@ -27,7 +31,7 @@ const ProjectList = (() => {
         }
     }
 
-    return { projects, addProject, removeProject, outputProjects }
+    return { projects, addProject, removeProject, outputProjects, getProjects }
 })();
 
 export { ProjectList };

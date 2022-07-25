@@ -15,7 +15,7 @@ const Work = Project("Work", "white");
 ProjectList.addProject(School);
 ProjectList.addProject(Work);
 
-// ProjectList.outputProjects();
+ProjectList.outputProjects();
 
 const newTask = Task("Do the dishes", "Clean all the dishes in the sink and dry them", "IDK", School, true);
 const newTask2 = Task("Anthony", "Bishop", "IDK", School, true);

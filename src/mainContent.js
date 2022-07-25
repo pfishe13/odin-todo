@@ -84,20 +84,20 @@ const MainContent = (() => {
     const openTaskForm = () => {
         const projectDropDown = document.createElement("select");
         projectDropDown.name = "";
-        projectDropDown.id = "";
+        projectDropDown.id = "task-project";
 
         for (const project of ProjectList.projects) {
             let option = document.createElement("option");
-            option.value = project;
+            console.log(project.getProjectName());
+            option.value = project.getProjectName();
             option.text = `${project.getProjectName()}`;
             projectDropDown.appendChild(option);
         }
 
         let dropDownLabel = document.createElement("label");
         dropDownLabel.textContent = "Choose Project";
-        
-
         document.querySelector(".form-inputs").appendChild(dropDownLabel).appendChild(projectDropDown);
+
 
         const form = document.getElementById("task-form");
         form.style.display = "block";
@@ -122,14 +122,14 @@ const MainContent = (() => {
         let taskName = document.getElementById("task-name").value;
         let taskDescription = document.getElementById("task-description").value;
         let taskDueDate = document.getElementById("task-date").value;
-        let taskProject = document.getElementById("task-project").value;
+        let taskProjectName = document.getElementById("task-project").value;
+        const taskProject = ProjectList.getProjects().find(project => project.getProjectName() === taskProjectName);
 
         const newTask = Task(taskName, taskDescription, taskDueDate, taskProject, false);
         TaskList.addTask(newTask);
 
         displayTask(newTask);
         closeTaskForm();
-        // TaskList.outputTasks();
     }
 
     const deleteTask = (e) => {
