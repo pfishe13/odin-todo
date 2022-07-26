@@ -97,6 +97,7 @@ h1 {
 
 #project-form,
 #task-form {
+  width: 80%;
   background-color: #253140;
   padding: 20px;
   display: none;
@@ -136,34 +137,60 @@ h1 {
 
 #new-project,
 #new-task,
-#new-task > .form-inputs {
+#new-task > .form-inputs,
+#new-project > .form-inputs {
   display: flex;
   flex-direction: column;
   gap: 30px;
   font-size: 1.2em;
 }
 
-#new-project > div,
+/* #new-project > div, */
 .form-inputs > div {
   display: flex;
   flex-direction: column;
 }
 
-input {
+label {
+  margin-bottom: 4px;
+}
+
+input,
+textarea,
+select,
+.form-buttons > button {
   background-color: #364659;
-  border-radius: 12px;
+  border-radius: 8px;
   border: 0;
   box-sizing: border-box;
   color: #eee;
   font-size: 18px;
-  height: 4em;
+  height: 2.6em;
   outline: 0;
-  padding: 4px 20px 0;
-  width: 300px;
+  padding: 4px 12px;
+  width: 40%;
 }
 
+select {
+  width: 30%;
+}
 textarea {
   height: 6em;
+  width: 100%;
+  padding-top: 14px;
+}
+
+.form-buttons > button {
+  width: auto;
+  padding-bottom: 1px;
+}
+
+.form-buttons > :first-child {
+  background-color: red;
+}
+
+.form-buttons > :last-child {
+  background-color: green;
 }
 
 .blur {

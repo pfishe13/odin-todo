@@ -99,7 +99,10 @@ const MainContent = (() => {
 
         let dropDownLabel = document.createElement("label");
         dropDownLabel.textContent = "Choose Project";
-        document.querySelector(".form-inputs").appendChild(dropDownLabel).appendChild(projectDropDown);
+        const dropDownDiv = document.createElement('div');
+        dropDownDiv.appendChild(dropDownLabel);
+        dropDownDiv.appendChild(projectDropDown);
+        document.querySelector(".form-inputs").appendChild(dropDownDiv);
 
 
         const form = document.getElementById("task-form");
