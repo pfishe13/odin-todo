@@ -31,7 +31,9 @@ const MainContent = (() => {
             return;
         }
 
-        const projectName = e.target.id.replace('-', /\s+/g);
+        const projectName = e.target.id.replace('-', " ");
+        // const projectName = e.target.id;
+        console.log(projectName);
         createTaskHeader(projectName);
         const projectTasks = taskArray.filter( (task) => {
             return (task.getProject().getProjectName().toString() === projectName);
