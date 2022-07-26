@@ -5,12 +5,22 @@ import { TaskList } from "./taskList";
 import { Task } from "./tasks";
 
 const MainContent = (() => {
-    const loadInitialTasks = () => {    
+    const loadInitialTasks = () => {  
+        createTaskHeader("All Tasks");
         const taskArray = TaskList.getTasks();
         for (const task of taskArray) {
             displayTask(task);
         }
         newTaskButton();
+    }
+
+    const createTaskHeader = (headerTitle) => {
+        const headerDivText = document.createElement('h2');
+        headerDivText.textContent = headerTitle;
+        const headerDiv = document.createElement('div');
+        headerDiv.classList.add('project-name-container')
+        headerDiv.appendChild(headerDivText);
+        document.getElementById("main-content").appendChild(headerDiv);
     }
 
     const displayProjectTasks = (e) => {
@@ -20,7 +30,9 @@ const MainContent = (() => {
             loadInitialTasks();
             return;
         }
+
         const projectName = e.target.id.replace('-', /\s+/g);
+        createTaskHeader(projectName);
         const projectTasks = taskArray.filter( (task) => {
             return (task.getProject().getProjectName().toString() === projectName);
         });

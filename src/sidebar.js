@@ -70,7 +70,8 @@ const Sidebar = (() => {
         e.preventDefault();
 
         let projectName = document.getElementById("project-name").value;
-        let projectColor = document.getElementById("project-color").value;
+        // let projectColor = document.getElementById("project-color").value;
+        let projectColor = document.querySelector('input[name="project-color"]:checked').value;
 
         const newProject = Project(projectName, projectColor);
         console.log(newProject.getProjectColor());
