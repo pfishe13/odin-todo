@@ -31,11 +31,15 @@
     <div id="project-form">
         <form id="new-project" onsubmit="">
             <h2>Create a New Project</h2>
-            <label for="project-name">Project Name:</label>
-            <input id="project-name" type="text" required>
+            <div>
+                <label for="project-name">Project Name:</label>
+                <input id="project-name" type="text" required>
+            </div>
 
-            <label for="project-color">Display Color</label>
-            <input id="project-color" type="color">
+            <div>
+                <label for="project-color">Display Color</label>
+                <input id="project-color" type="color">
+            </div>
 
             <div class="form-buttons">
                 <button type="button" class="cancel"><span class="material-symbols-outlined">
@@ -51,14 +55,20 @@
         <form id="new-task" onsubmit="">
             <div class="form-inputs">
                 <h2>Create a New Task</h2>
-                <label for="task-name">Task Name:</label>
-                <input id="task-name" type="text" required>
+                <div>
+                    <label for="task-name">Task Name:</label>
+                    <input id="task-name" type="text" required>
+                </div>
 
-                <label for="task-description">Description:</label>
-                <input id="task-description" type="text" >
+                <div>
+                    <label for="task-description">Description:</label>
+                    <textarea id="task-description" type="text" ></textarea>
+                </div>
 
-                <label for="task-date">Due:</label>
-                <input id="task-date" type="date" >
+                <div>
+                    <label for="task-date">Due:</label>
+                    <input id="task-date" type="date" >
+                </div>
             </div>
             <div class="form-buttons">
                 <button type="button" class="task-cancel"><span class="material-symbols-outlined">
@@ -69,6 +79,9 @@
                   </span></button>
             </div>
         </form>
+    </div>
+    <div class="blur">
+
     </div>
 </body>
 </html>
