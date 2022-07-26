@@ -6,12 +6,13 @@ import { ProjectList } from "./projectList";
 import { MainContent } from "./mainContent";
 
 // ProjectList.outputProjects();
-
+const noProject = Project('No Project', 'white');
 const School = Project('School', 'blue');
 // console.log(School);
 
 const Work = Project("Work", "white");
 
+ProjectList.addProject(noProject);
 ProjectList.addProject(School);
 ProjectList.addProject(Work);
 

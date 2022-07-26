@@ -101,21 +101,31 @@ const MainContent = (() => {
         projectDropDown.name = "";
         projectDropDown.id = "task-project";
 
+        // let allTasksOption = document.createElement("option");
+        // allTasksOption.value = "all";
+        // allTasksOption.text = `No Project`;
+        // projectDropDown.appendChild(allTasksOption);
+
         for (const project of ProjectList.projects) {
             let option = document.createElement("option");
-            console.log(project.getProjectName());
+            // console.log(project.getProjectName());
             option.value = project.getProjectName();
             option.text = `${project.getProjectName()}`;
+            if (option.value === "No Project") {
+                option.text = "No Project Selected";
+                option.hidden = true;
+            }
             projectDropDown.appendChild(option);
         }
+
 
         let dropDownLabel = document.createElement("label");
         dropDownLabel.textContent = "Choose Project";
         const dropDownDiv = document.createElement('div');
         dropDownDiv.appendChild(dropDownLabel);
         dropDownDiv.appendChild(projectDropDown);
-        document.querySelector(".form-inputs").appendChild(dropDownDiv);
-
+        const formDiv = document.querySelector(".task-form-inputs");
+        formDiv.appendChild(dropDownDiv);
 
         const form = document.getElementById("task-form");
         form.style.display = "block";
@@ -131,7 +141,7 @@ const MainContent = (() => {
         const form = document.getElementById("task-form");
         form.style.display = "none";
 
-        document.querySelector(".form-inputs").lastChild.remove();
+        document.querySelector(".task-form-inputs").lastChild.remove();
         Sidebar.blurBackground();
     }
 
@@ -139,11 +149,14 @@ const MainContent = (() => {
         e.preventDefault();
 
         let taskName = document.getElementById("task-name").value;
+        if (taskName === "") {
+            return;
+        }
         let taskDescription = document.getElementById("task-description").value;
         let taskDueDate = document.getElementById("task-date").value;
         let taskProjectName = document.getElementById("task-project").value;
-        const taskProject = ProjectList.getProjects().find(project => project.getProjectName() === taskProjectName);
-
+        console.log(taskProjectName);
+        let taskProject = ProjectList.getProjects().find(project => project.getProjectName() === taskProjectName);
         const newTask = Task(taskName, taskDescription, taskDueDate, taskProject, false);
         TaskList.addTask(newTask);
 

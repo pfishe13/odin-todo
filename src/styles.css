@@ -143,7 +143,7 @@ h1 {
 
 #new-project,
 #new-task,
-#new-task > .form-inputs,
+#new-task > .task-form-inputs,
 #new-project > .form-inputs {
   display: flex;
   flex-direction: column;
@@ -152,7 +152,8 @@ h1 {
 }
 
 /* #new-project > div, */
-.form-inputs > div {
+.form-inputs > div,
+.task-form-inputs > div {
   display: flex;
   flex-direction: column;
 }
