@@ -45,6 +45,8 @@ const Sidebar = (() => {
         const form = document.getElementById("project-form");
         form.style.display = "block";
 
+        blurBackground();
+
         const submitFormButton = document.getElementById("project-submit");
         submitFormButton.addEventListener('click', processProjectForm);
 
@@ -55,6 +57,13 @@ const Sidebar = (() => {
     const closeProjectForm = () => {
         const form = document.getElementById("project-form");
         form.style.display = "none";
+        blurBackground();
+    }
+
+    // This should be moved to different file since it gets called in the mainContent file as well
+    const blurBackground = () => {
+        const body = document.querySelector('.blur');
+        body.classList.toggle("blurred");
     }
 
     const processProjectForm = (e) => {
@@ -71,7 +80,7 @@ const Sidebar = (() => {
         createProjectButton(newProject);
     }
 
-    return { displaySidebar };
+    return { displaySidebar, blurBackground };
 })();
 
 

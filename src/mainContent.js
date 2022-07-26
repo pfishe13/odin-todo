@@ -1,5 +1,6 @@
 import { Project } from "./project";
 import { ProjectList } from "./projectList";
+import { Sidebar } from "./sidebar";
 import { TaskList } from "./taskList";
 import { Task } from "./tasks";
 
@@ -82,6 +83,8 @@ const MainContent = (() => {
     }
 
     const openTaskForm = () => {
+        Sidebar.blurBackground();
+
         const projectDropDown = document.createElement("select");
         projectDropDown.name = "";
         projectDropDown.id = "task-project";
@@ -114,6 +117,7 @@ const MainContent = (() => {
         form.style.display = "none";
 
         document.querySelector(".form-inputs").lastChild.remove();
+        Sidebar.blurBackground();
     }
 
     const processTaskForm = (e) => {
