@@ -25,7 +25,7 @@ const ProjectList = (() => {
 
     const findProjectGivenName = (projectSearchName) => {
         const project = projects.find( currProject => currProject.getProjectName() == projectSearchName);
-        console.log(`Returning this project: ${project.getProjectName()}`);
+        // console.log(`Returning this project: ${project.getProjectName()}`);
         return project;
     }
 

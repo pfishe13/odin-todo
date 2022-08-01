@@ -36,7 +36,7 @@ const TaskList = (() => {
                 },
                 completion: task.getCompletion()
             }
-            console.log(thisTask);
+            // console.log(thisTask);
             storedArray.push(thisTask);
         }
         // console.log(storedArray);

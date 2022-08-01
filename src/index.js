@@ -45,8 +45,8 @@ let defaultProjectList = [];
 let storedProjects = localStorage.getItem("storedProjectList");
 storedProjects = JSON.parse(storedProjects || JSON.stringify(defaultProjectList));
 // storedProjects = JSON.parse(storedProjects);
-console.log(`Outputtng the stored projects`);
-console.log(storedProjects);
+// console.log(`Outputtng the stored projects`);
+// console.log(storedProjects);
 if (storedProjects.length !== 0) {
     for (const storedProject of storedProjects) {
         const newProject = Project(storedProject.name, storedProject.color);
@@ -59,11 +59,11 @@ if (storedProjects.length !== 0) {
 let defaultTaskList = [];
 let storedTasks = localStorage.getItem("storedTaskList");
 storedTasks = JSON.parse(storedTasks || JSON.stringify(defaultTaskList));
-console.log(storedTasks);
+// console.log(storedTasks);
 for (const storedTask of storedTasks) {
-    console.log(`Name of the project ${storedTask.project.name}`);
+    // console.log(`Name of the project ${storedTask.project.name}`);
     const projectFound = ProjectList.findProjectGivenName(storedTask.project.name);
-    console.log(`Project found: ${projectFound}`);
+    // console.log(`Project found: ${projectFound}`);
     const newTask = Task(storedTask.title, storedTask.desc, storedTask.dueDate, projectFound, storedTask.completion);
     TaskList.addTask(newTask);
 }

@@ -191,7 +191,7 @@ const MainContent = (() => {
     }
 
     const toggleTaskCompletion = (e) => {
-        console.log(e.target.id);
+        // console.log(e.target.id);
         const taskName = (e.target.id).split("-");
         taskName.pop();
         const taskNameString = taskName.join(" ");
