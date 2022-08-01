@@ -80,6 +80,10 @@ h1 {
   justify-content: space-between;
 }
 
+.completed > .card-left-side {
+  text-decoration: line-through;
+}
+
 .project-name-container {
   font-size: 18px;
   height: auto;
@@ -166,6 +170,8 @@ input,
 textarea,
 select,
 .form-buttons > button {
+  font-family: "Work Sans", sans-serif;
+
   background-color: #364659;
   border-radius: 8px;
   border: 0;

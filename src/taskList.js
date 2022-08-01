@@ -9,11 +9,39 @@ const TaskList = (() => {
 
     const addTask = (task) => {
         tasks.push(task);
+        updateTaskStorage();
     }
 
     const removeTask = (taskName) => {
         tasks  = tasks.filter( (currTask) => currTask.getTitle() !== taskName);
         // outputTasks();
+    }
+
+    const toggleCompletion = (taskName) => {
+        const taskToToggleComplete = tasks.find( (currTask) => currTask.getTitle() === taskName);
+        taskToToggleComplete.toggleTaskCompletion();
+    }
+
+    const updateTaskStorage = () => {
+
+        let storedArray = [];
+        for (const task of tasks) {
+            let thisTask = {
+                title: task.getTitle(),
+                desc: task.getDescription(),
+                dueDate: task.getDueDate(),
+                project: {
+                    name: task.getProject().getProjectName(),
+                    color: task.getProject().getProjectColor()
+                },
+                completion: task.getCompletion()
+            }
+            console.log(thisTask);
+            storedArray.push(thisTask);
+        }
+        // console.log(storedArray);
+        window.localStorage.setItem("storedTaskList", JSON.stringify(storedArray));
+
     }
 
     const outputTasks = () => {
@@ -31,7 +59,8 @@ const TaskList = (() => {
         }
     }
 
-    return { addTask, removeTask, outputTasks, getTasks }
+
+    return { addTask, removeTask, outputTasks, getTasks, toggleCompletion }
 })();
 
 export { TaskList };

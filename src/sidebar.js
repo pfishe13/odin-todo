@@ -57,6 +57,7 @@ const Sidebar = (() => {
     const closeProjectForm = () => {
         const form = document.getElementById("project-form");
         form.style.display = "none";
+        resetFormValues();
         blurBackground();
     }
 

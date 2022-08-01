@@ -17,6 +17,8 @@ const MainContent = (() => {
     const createTaskHeader = (headerTitle) => {
         const headerDivText = document.createElement('h2');
         headerDivText.textContent = headerTitle;
+        if (headerTitle !== "All Tasks")
+            headerDivText.style.color = `${ProjectList.findProjectColor(headerTitle)}`;
         const headerDiv = document.createElement('div');
         headerDiv.classList.add('project-name-container')
         headerDiv.appendChild(headerDivText);
@@ -33,7 +35,6 @@ const MainContent = (() => {
 
         const projectName = e.target.id.replace('-', " ");
         // const projectName = e.target.id;
-        console.log(projectName);
         createTaskHeader(projectName);
         const projectTasks = taskArray.filter( (task) => {
             return (task.getProject().getProjectName().toString() === projectName);
@@ -65,7 +66,7 @@ const MainContent = (() => {
                     
                 </div>
                 <div class="card-right-side">
-                    <h3>Project: ${task.getProject().getProjectName()} | Due: ${task.getDueDate()}</h3>
+                    <h3>Project: <span style="color: ${task.getProject().getProjectColor()}">${task.getProject().getProjectName()}</span> | Due: ${task.getDueDate()}</h3>
                     <div>
                         <span id="${idFlag}-complete" class="complete-task material-symbols-outlined">
                             done
@@ -79,10 +80,15 @@ const MainContent = (() => {
                     </div>
                 </div>
             `;
+
+            if (task.getCompletion() === true) {
+                taskCard.classList.add("completed");
+            }
+
             mainContainer.appendChild(taskCard);
 
             const completeButton = document.getElementById(`${idFlag}-complete`);
-            completeButton.addEventListener('click', completeTask);
+            completeButton.addEventListener('click', toggleTaskCompletion);
 
             const editButton = document.getElementById(`${idFlag}-edit`);
             editButton.addEventListener('click', editTask);
@@ -102,11 +108,6 @@ const MainContent = (() => {
         const projectDropDown = document.createElement("select");
         projectDropDown.name = "";
         projectDropDown.id = "task-project";
-
-        // let allTasksOption = document.createElement("option");
-        // allTasksOption.value = "all";
-        // allTasksOption.text = `No Project`;
-        // projectDropDown.appendChild(allTasksOption);
 
         for (const project of ProjectList.projects) {
             let option = document.createElement("option");
@@ -143,6 +144,7 @@ const MainContent = (() => {
         const form = document.getElementById("task-form");
         form.style.display = "none";
 
+        resetFormValues();
         document.querySelector(".task-form-inputs").lastChild.remove();
         Sidebar.blurBackground();
     }
@@ -188,8 +190,15 @@ const MainContent = (() => {
         console.log(e.target.id);
     }
 
-    const completeTask = (e) => {
+    const toggleTaskCompletion = (e) => {
         console.log(e.target.id);
+        const taskName = (e.target.id).split("-");
+        taskName.pop();
+        const taskNameString = taskName.join(" ");
+        TaskList.toggleCompletion(taskNameString);
+        clearMainContent();
+        loadInitialTasks();
+
     }
 
     return { loadInitialTasks, displayProjectTasks };
