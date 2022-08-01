@@ -78,7 +78,13 @@ const Sidebar = (() => {
         ProjectList.addProject(newProject);
 
         closeProjectForm();
+        resetFormValues();
         createProjectButton(newProject);
+    }
+
+    const resetFormValues = () => {
+        document.getElementById("project-name").value = "";
+        document.getElementById('radio-white').checked = true;
     }
 
     return { displaySidebar, blurBackground };

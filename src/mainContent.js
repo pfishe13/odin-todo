@@ -154,16 +154,25 @@ const MainContent = (() => {
         if (taskName === "") {
             return;
         }
+
+        // get task form values
         let taskDescription = document.getElementById("task-description").value;
         let taskDueDate = document.getElementById("task-date").value;
         let taskProjectName = document.getElementById("task-project").value;
-        console.log(taskProjectName);
         let taskProject = ProjectList.getProjects().find(project => project.getProjectName() === taskProjectName);
         const newTask = Task(taskName, taskDescription, taskDueDate, taskProject, false);
         TaskList.addTask(newTask);
 
         displayTask(newTask);
+        resetFormValues();
         closeTaskForm();
+    }
+
+    const resetFormValues = () => {
+        document.getElementById("task-name").value = "";
+        document.getElementById("task-description").value = "";
+        document.getElementById("task-date").value = "";
+        document.getElementById("task-project").value = "";
     }
 
     const deleteTask = (e) => {
