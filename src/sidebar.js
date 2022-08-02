@@ -4,10 +4,6 @@ import { MainContent } from "./mainContent";
 
 const Sidebar = (() => {
     const displaySidebar = () => {
-        displayProjectButtons();
-    }
-
-    const displayProjectButtons = () => {
         clearSidebarContent();
         const sidebar = document.getElementById("project-buttons");
         const projectHeader = document.createElement('h3');
@@ -15,13 +11,13 @@ const Sidebar = (() => {
         sidebar.appendChild(projectHeader);
 
         const projectButton = document.createElement('h3');
-            projectButton.innerHTML = `<span class="project-icon material-symbols-outlined">
+        projectButton.innerHTML = `<span class="project-icon material-symbols-outlined">
             folder
             </span>All Tasks`;
-            // projectButton.textContent = `All Tasks`;
-            projectButton.id = 'all';
-            projectButton.addEventListener('click', MainContent.displayProjectTasks);
-            sidebar.appendChild(projectButton);
+        projectButton.id = 'all';
+        projectButton.addEventListener('click', MainContent.displayProjectTasks);
+        sidebar.appendChild(projectButton);
+
         for (const project of ProjectList.projects) {
             createProjectButton(project);
         }
@@ -36,11 +32,9 @@ const Sidebar = (() => {
             </span>${project.getProjectName()}`;
         projectButton.style.color = `${project.getProjectColor()}`;
         projectButton.id = `${project.getProjectName().replace(/\s+/g, '-')}`;
-        projectButton.addEventListener('click', MainContent.displayProjectTasks); // left off here, need to create a new file for mainContent display and implement displayTasks
+        projectButton.addEventListener('click', MainContent.displayProjectTasks);
         sidebar.appendChild(projectButton);
     }
-
-    
 
     const newProjectButton = () => {
         const newProjectButton = document.getElementById("open-project-form")
@@ -74,7 +68,6 @@ const Sidebar = (() => {
         blurBackground();
     }
 
-    // This should be moved to different file since it gets called in the mainContent file as well
     const blurBackground = () => {
         const body = document.querySelector('.blur');
         body.classList.toggle("blurred");
@@ -84,7 +77,6 @@ const Sidebar = (() => {
         e.preventDefault();
 
         let projectName = document.getElementById("project-name").value;
-        // let projectColor = document.getElementById("project-color").value;
         let projectColor = document.querySelector('input[name="project-color"]:checked').value;
 
         const newProject = Project(projectName, projectColor);

@@ -34,23 +34,19 @@ const MainContent = (() => {
             headerDiv.appendChild(deleteProjectButton);
         }
 
-        
-
         document.getElementById("main-content").appendChild(headerDiv);
-
-
     }
 
     const displayProjectTasks = (e) => {
         clearMainContent();
         const taskArray = TaskList.getTasks();
+
         if (e.target.id === 'all') {
             loadInitialTasks();
             return;
         }
 
         const projectName = e.target.id.replace('-', " ");
-        // const projectName = e.target.id;
         createTaskHeader(projectName);
         const projectTasks = taskArray.filter( (task) => {
             return (task.getProject().getProjectName().toString() === projectName);
@@ -69,7 +65,6 @@ const MainContent = (() => {
 
     const displayTask = (task) => {
         const idFlag = task.getTitle().replace(/\s+/g, '-');
-        // console.log(idFlag);
         const mainContainer = document.getElementById("main-content");
         const taskCard = document.createElement("div");
             taskCard.classList.add("task-card");
@@ -127,7 +122,6 @@ const MainContent = (() => {
 
         for (const project of ProjectList.projects) {
             let option = document.createElement("option");
-            // console.log(project.getProjectName());
             option.value = project.getProjectName();
             option.text = `${project.getProjectName()}`;
             if (option.value === "No Project") {
@@ -145,6 +139,10 @@ const MainContent = (() => {
         dropDownDiv.appendChild(projectDropDown);
         const formDiv = document.querySelector(".task-form-inputs");
         formDiv.appendChild(dropDownDiv);
+
+        let dateInput = document.getElementById("task-date");
+        console.log(dateInput);
+        dateInput.valueAsDate = new Date();
 
         const form = document.getElementById("task-form");
         form.style.display = "block";
@@ -176,6 +174,8 @@ const MainContent = (() => {
         // get task form values
         let taskDescription = document.getElementById("task-description").value;
         let taskDueDate = document.getElementById("task-date").value;
+
+        // taskDueDate = taskDueDate.toLocaleDateString();
         let taskProjectName = document.getElementById("task-project").value;
         let taskProject = ProjectList.getProjects().find(project => project.getProjectName() === taskProjectName);
         const newTask = Task(taskName, taskDescription, taskDueDate, taskProject, false);
@@ -202,12 +202,11 @@ const MainContent = (() => {
         loadInitialTasks();
     }
 
-    const editTask = (e) => {
-        console.log(e.target.id);
-    }
+    // const editTask = (e) => {
+    //     console.log(e.target.id);
+    // }
 
     const toggleTaskCompletion = (e) => {
-        // console.log(e.target.id);
         const taskName = (e.target.id).split("-");
         taskName.pop();
         const taskNameString = taskName.join(" ");
@@ -218,7 +217,6 @@ const MainContent = (() => {
     }
 
     const deleteProject = (e) => {
-        console.log(e.target.id);
         TaskList.deleteTasksGivenProject(ProjectList.findProjectGivenName(e.target.id.replace("-"," ")));
         ProjectList.removeProject(ProjectList.findProjectGivenName(e.target.id.replace("-"," ")));
         clearMainContent();

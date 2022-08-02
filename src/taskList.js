@@ -1,6 +1,3 @@
-import { ProjectList } from "./projectList";
-import { Task } from "./tasks";
-
 const TaskList = (() => {
     let tasks = [];
 
@@ -25,7 +22,6 @@ const TaskList = (() => {
     }
 
     const updateTaskStorage = () => {
-
         let storedArray = [];
         for (const task of tasks) {
             let thisTask = {
@@ -38,27 +34,10 @@ const TaskList = (() => {
                 },
                 completion: task.getCompletion()
             }
-            // console.log(thisTask);
             storedArray.push(thisTask);
         }
-        // console.log(storedArray);
         window.localStorage.setItem("storedTaskList", JSON.stringify(storedArray));
 
-    }
-
-    const outputTasks = () => {
-        let i = 0;
-        if (tasks.length === 0) {
-            console.log("There are 0 tasks");
-            return;
-        }
-        for (let i = 0; i < tasks.length; i++) {
-        // console.log("Tasks: ")
-        // for (const task of tasks) {
-            console.log(`${i}) ${tasks[i].getTitle()}, ${tasks[i].getDescription()}, ${tasks[i].getDueDate()}, ${tasks[i].getProject().getProjectName()}`)
-            // console.log(`${i}) ${task.getTitle()}, ${task.getDescription()}, ${task.getDueDate()}, ${task.getProject().getProjectName()}`)
-            // i++;
-        }
     }
 
     const deleteTasksGivenProject = (project) => {
@@ -67,7 +46,7 @@ const TaskList = (() => {
     }
 
 
-    return { addTask, removeTask, outputTasks, getTasks, toggleCompletion, deleteTasksGivenProject }
+    return { addTask, removeTask, getTasks, toggleCompletion, deleteTasksGivenProject }
 })();
 
 export { TaskList };

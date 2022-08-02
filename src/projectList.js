@@ -1,5 +1,3 @@
-import { Project } from "./project";
-
 const ProjectList = (() => {
     let projects = [];
 
@@ -39,19 +37,6 @@ const ProjectList = (() => {
         }
         window.localStorage.setItem("storedProjectList", JSON.stringify(storedArray));
     }
-
-    // const outputProjects = () => {
-    //     let i = 0;
-    //     if (projects.length === 0) {
-    //         console.log("There are 0 projects");
-    //         return;
-    //     }
-    //     console.log("Projects: ")
-    //     for (const project of projects) {
-    //         console.log(`${i}) ${project.getProjectName()}`);
-    //         i++;
-    //     }
-    // }
 
     return { projects, addProject, removeProject, getProjects, findProjectColor, findProjectGivenName }
 })();
