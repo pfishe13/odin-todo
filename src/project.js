@@ -6,6 +6,7 @@ const Project = (name, color) => {
     const getProjectName = () => projectName;
     const getProjectColor = () => projectDisplayColor;
 
+
     return { getProjectName, getProjectColor };
 }
 

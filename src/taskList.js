@@ -14,7 +14,7 @@ const TaskList = (() => {
 
     const removeTask = (taskName) => {
         tasks  = tasks.filter( (currTask) => currTask.getTitle() !== taskName);
-        // outputTasks();
+        updateTaskStorage();
     }
 
     const toggleCompletion = (taskName) => {

@@ -16,6 +16,7 @@ const ProjectList = (() => {
     const removeProject = (project) => {
         const index = projects.findIndex((currProject) => currProject.getProjectName() === project.getProjectName());
         projects.splice(index, 1);
+        updateProjectStorage();
     }
 
     const findProjectColor = (projectName) => {
