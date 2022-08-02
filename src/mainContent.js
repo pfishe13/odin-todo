@@ -20,9 +20,25 @@ const MainContent = (() => {
         if (headerTitle !== "All Tasks")
             headerDivText.style.color = `${ProjectList.findProjectColor(headerTitle)}`;
         const headerDiv = document.createElement('div');
-        headerDiv.classList.add('project-name-container')
+        headerDiv.classList.add('project-name-container');
         headerDiv.appendChild(headerDivText);
+
+        if (headerTitle !== "All Tasks" && headerTitle !== "No Project") {
+            const deleteProjectButton = document.createElement("span");
+            deleteProjectButton.classList.add("delete-task", "material-symbols-outlined");
+            deleteProjectButton.id = `${headerTitle.replace(" ","-")}`;
+            deleteProjectButton.innerHTML = `delete`;
+
+            deleteProjectButton.addEventListener('click', deleteProject);
+
+            headerDiv.appendChild(deleteProjectButton);
+        }
+
+        
+
         document.getElementById("main-content").appendChild(headerDiv);
+
+
     }
 
     const displayProjectTasks = (e) => {
@@ -71,9 +87,9 @@ const MainContent = (() => {
                         <span id="${idFlag}-complete" class="complete-task material-symbols-outlined">
                             done
                         </span>
-                        <span id="${idFlag}-edit" class="edit-task material-symbols-outlined">
+                        <!--<span id="${idFlag}-edit" class="edit-task material-symbols-outlined">
                             edit_note
-                        </span>
+                        </span> -->
                         <span id="${idFlag}-delete" class="delete-task material-symbols-outlined">
                             delete
                         </span>
@@ -90,8 +106,8 @@ const MainContent = (() => {
             const completeButton = document.getElementById(`${idFlag}-complete`);
             completeButton.addEventListener('click', toggleTaskCompletion);
 
-            const editButton = document.getElementById(`${idFlag}-edit`);
-            editButton.addEventListener('click', editTask);
+            // const editButton = document.getElementById(`${idFlag}-edit`);
+            // editButton.addEventListener('click', editTask);
 
             const deleteButton = document.getElementById(`${idFlag}-delete`);
             deleteButton.addEventListener('click', deleteTask);
@@ -199,6 +215,15 @@ const MainContent = (() => {
         clearMainContent();
         loadInitialTasks();
 
+    }
+
+    const deleteProject = (e) => {
+        console.log(e.target.id);
+        TaskList.deleteTasksGivenProject(ProjectList.findProjectGivenName(e.target.id.replace("-"," ")));
+        ProjectList.removeProject(ProjectList.findProjectGivenName(e.target.id.replace("-"," ")));
+        clearMainContent();
+        loadInitialTasks();
+        Sidebar.displaySidebar();
     }
 
     return { loadInitialTasks, displayProjectTasks };

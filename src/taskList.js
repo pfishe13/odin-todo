@@ -1,3 +1,4 @@
+import { ProjectList } from "./projectList";
 import { Task } from "./tasks";
 
 const TaskList = (() => {
@@ -20,6 +21,7 @@ const TaskList = (() => {
     const toggleCompletion = (taskName) => {
         const taskToToggleComplete = tasks.find( (currTask) => currTask.getTitle() === taskName);
         taskToToggleComplete.toggleTaskCompletion();
+        updateTaskStorage();
     }
 
     const updateTaskStorage = () => {
@@ -59,8 +61,13 @@ const TaskList = (() => {
         }
     }
 
+    const deleteTasksGivenProject = (project) => {
+        tasks = tasks.filter( (task) => task.getProject() !== project);
+        updateTaskStorage();
+    }
 
-    return { addTask, removeTask, outputTasks, getTasks, toggleCompletion }
+
+    return { addTask, removeTask, outputTasks, getTasks, toggleCompletion, deleteTasksGivenProject }
 })();
 
 export { TaskList };

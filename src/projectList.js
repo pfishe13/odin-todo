@@ -8,7 +8,6 @@ const ProjectList = (() => {
     }
 
     const addProject = (project) => {
-        // console.log(`Adding new project: ${project.getProjectName()}`);
         projects.push(project);
         updateProjectStorage();
     }
@@ -26,7 +25,6 @@ const ProjectList = (() => {
 
     const findProjectGivenName = (projectSearchName) => {
         const project = projects.find( currProject => currProject.getProjectName() == projectSearchName);
-        // console.log(`Returning this project: ${project.getProjectName()}`);
         return project;
     }
 
@@ -39,24 +37,23 @@ const ProjectList = (() => {
             }
             storedArray.push(thisProject);
         }
-        // console.log(storedArray);
         window.localStorage.setItem("storedProjectList", JSON.stringify(storedArray));
     }
 
-    const outputProjects = () => {
-        let i = 0;
-        if (projects.length === 0) {
-            console.log("There are 0 projects");
-            return;
-        }
-        console.log("Projects: ")
-        for (const project of projects) {
-            console.log(`${i}) ${project.getProjectName()}`);
-            i++;
-        }
-    }
+    // const outputProjects = () => {
+    //     let i = 0;
+    //     if (projects.length === 0) {
+    //         console.log("There are 0 projects");
+    //         return;
+    //     }
+    //     console.log("Projects: ")
+    //     for (const project of projects) {
+    //         console.log(`${i}) ${project.getProjectName()}`);
+    //         i++;
+    //     }
+    // }
 
-    return { projects, addProject, removeProject, outputProjects, getProjects, findProjectColor, findProjectGivenName }
+    return { projects, addProject, removeProject, getProjects, findProjectColor, findProjectGivenName }
 })();
 
 export { ProjectList };

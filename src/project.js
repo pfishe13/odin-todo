@@ -1,4 +1,3 @@
-
 const Project = (name, color) => {
     let projectName = name;
     let projectDisplayColor = color;

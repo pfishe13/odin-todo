@@ -8,7 +8,12 @@ const Sidebar = (() => {
     }
 
     const displayProjectButtons = () => {
+        clearSidebarContent();
         const sidebar = document.getElementById("project-buttons");
+        const projectHeader = document.createElement('h3');
+        projectHeader.textContent = "Projects";
+        sidebar.appendChild(projectHeader);
+
         const projectButton = document.createElement('h3');
             projectButton.innerHTML = `<span class="project-icon material-symbols-outlined">
             folder
@@ -35,10 +40,18 @@ const Sidebar = (() => {
         sidebar.appendChild(projectButton);
     }
 
+    
+
     const newProjectButton = () => {
         const newProjectButton = document.getElementById("open-project-form")
         newProjectButton.addEventListener('click', openProjectForm)
-        // sidebar.appendChild(newProjectButton);
+    }
+
+    const clearSidebarContent = () => {
+        const mainContainer = document.getElementById("project-buttons");
+        while (mainContainer.lastChild) {
+            mainContainer.lastChild.remove();
+        }
     }
 
     const openProjectForm = () => {
@@ -75,7 +88,6 @@ const Sidebar = (() => {
         let projectColor = document.querySelector('input[name="project-color"]:checked').value;
 
         const newProject = Project(projectName, projectColor);
-        console.log(newProject.getProjectColor());
         ProjectList.addProject(newProject);
 
         closeProjectForm();
