@@ -45,6 +45,7 @@ h1 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  overflow: scroll;
 }
 
 #project-buttons > :first-child {
@@ -67,6 +68,7 @@ h1 {
 #main-content {
   display: flex;
   flex-direction: column;
+  overflow: scroll;
 }
 
 .project-name-container,
