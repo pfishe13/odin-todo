@@ -32,6 +32,18 @@ h1 {
   border-radius: 15px;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.15);
   background-color: #253140;
+  animation: fadeInAnimation ease 3s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeInAnimation {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 #header {
@@ -63,6 +75,14 @@ h1 {
   padding: 5px;
   background-color: transparent;
   border: none;
+}
+
+#project-buttons > h3:hover {
+  padding-left: 10px;
+}
+
+#project-buttons > h3:hover:first-child {
+  padding-left: 5px;
 }
 
 #main-content {
@@ -107,6 +127,10 @@ h1 {
   align-items: end;
 }
 
+.card-right-side > div > span:hover {
+  transform: scale(1.15);
+}
+
 #project-form,
 #task-form {
   width: 80%;
@@ -136,9 +160,17 @@ h1 {
   gap: 8px;
 }
 
+#open-project-form:hover,
+#open-task-form:hover {
+  transform: scale(1.1);
+}
+
 #open-task-form {
   border-radius: 50%;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #open-task-form {
