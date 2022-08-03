@@ -4,6 +4,7 @@ import { TaskList } from "./taskList";
 import { Project } from "./project";
 import { ProjectList } from "./projectList";
 import { MainContent } from "./mainContent";
+import './styles.css';
 
 
 // Get projects from local storage
